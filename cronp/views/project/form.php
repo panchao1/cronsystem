@@ -5,13 +5,13 @@
       <div class="form-group">
         <label class="col-md-2 control-label">项目名称</label>
         <div class="col-md-6">
-          <input class="form-control" type="text" name="name" value="" />
+          <input class="form-control" type="text" name="name" value="" placeholder="输入项目名称"/>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label">项目描述</label>
         <div class="col-md-6">
-          <input class="form-control" type="text" name="describe" value="" />
+          <input class="form-control" type="text" name="describe" value="" placeholder="输入项目描述"/>
         </div>
       </div>
       <div class="form-actions">

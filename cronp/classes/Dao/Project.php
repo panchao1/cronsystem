@@ -2,28 +2,14 @@
 /**
  * 项目 dao 
  */
-class Dao_Project extends Dao {
+class Dao_Project extends Dao_Base {
 
 	protected $_table = 'project';
 
 	protected $_db = 'cron_task';
 
-	/**
-	 * 插入一条
-	 * @param  array $values 
-	 * @return array
-	 */
-	public function insert(array $values) {
+	protected $_primaryKey = 'project_id';
 
-		if(!$values) {
-			return FALSE;
-		}
-
-		return DB::insert($this->_table)
-			->columns(array_keys($values))
-			->values(array_values($values))
-			->execute($this->_db);
-	}
 
 	/**
 	 * 项目总数
@@ -31,10 +17,7 @@ class Dao_Project extends Dao {
 	 */
 	public function countProjects() {
 
-		return DB::select(DB::expr('count(*) AS recordCount'))
-			->from($this->_table)
-			->execute($this->_db)
-			->get('recordCount');
+		return parent::countAllData();
 	}
 
 	/**
@@ -43,10 +26,7 @@ class Dao_Project extends Dao {
 	 */
 	public function getProjects() {
 
-		return DB::select('*')
-			->from($this->_table)
-			->execute($this->_db)
-			->as_array();
+		return parent::getAllData();
 	}
 
 	/**
@@ -57,17 +37,7 @@ class Dao_Project extends Dao {
 	 */
 	public function getProjectsBylimit($offset = 0, $number = 0) {
 
-		$select = DB::select('*')
-			->from($this->_table);
-		if($offset) {
-			$select->offset($offset);
-		}
-		if($number) {
-			$select->limit($number);
-		}
-		
-		return $select->execute($this->_db)
-			->as_array();
+		return parent::getDataByLimit($offset, $offset);
 	}
 
 }

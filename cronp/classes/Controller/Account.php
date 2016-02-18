@@ -11,8 +11,11 @@ class Controller_Account extends Controller_Template {
 	 * 添加账号
 	 */
 	public function action_add() {
+		
+		$roles = Model::factory('Role')->getRoles()->getObject();
 
-		$this->_default->content = View::factory('account/form');
+		$this->_default->content = View::factory('account/form')
+				->set('roles', $roles);
 	}
 
 	/**
@@ -69,9 +72,13 @@ class Controller_Account extends Controller_Template {
 	 */
 	public function action_list() {
 
-		$accounts = Model::factory('Account')->getAccounts()->getObject();
-
+		$total = Model::factory('Account')->countAccounts()->getArray();
+		$pagination = Pagination::factory($total);
+		
+		$accounts = Model::factory('Account')->getAccountsByLimit($pagination->offset(), $pagination->number())->getObject();
+		
 		$this->_default->content = View::factory('account/list')
-				->set('accounts', $accounts);
+				->set('accounts', $accounts)
+				->set('pagination', $pagination);
 	}
 }

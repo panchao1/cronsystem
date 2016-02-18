@@ -21,6 +21,9 @@ class Slice_Mode {
 	 */
 	public static function factory($format = '') {
 		
+		if($format == '') {
+			return new Slice_Mode_None();
+		}
 		$format = explode(':', $format);
 		$type = strtolower($format[0]);
 		$mode = strtolower($format[1]);
@@ -36,7 +39,8 @@ class Slice_Mode {
 		}
 		// extends other type
 		
-		throw new Slice_Exception("Slice type $type is not exists");
+		//throw new Slice_Exception("Slice type $type is not exists");
+		return new Slice_Mode_None();
 		
 	}
 

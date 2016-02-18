@@ -135,6 +135,11 @@ Kohana::$config->attach(new Config_File('config/' . strtolower($_SERVER['ENVIRON
 Cookie::$salt = 'adsasdas';
 
 /**
+ * session
+ */
+session_start();
+
+/**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(

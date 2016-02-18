@@ -2,41 +2,50 @@
 /**
  * 日志类
  * @author PanChao
- *
- * 1.file
- * 2.database
- * 3.memcache
- * 4.mongdb
- * 5.redis
- * eg: Logger::factory('database')->write(array)->execute('success');
+ * eg: Logger::factory('success_log')->write($data)->execute();
  */
-
 abstract class Logger {
+	
+	/**
+	 *  要写入的数据
+	 * @var string | array
+	 */
+	protected $_data;
 
-	public static function factory($type = 'file') {
+	/**
+	 * 配置文件key
+	 * @var string
+	 */
+	protected static $_key = '';
 
-		$type = strtolower($type);
+	/**
+	 * 参数
+	 * @var array
+	 */
+	protected static $_parameters = array();
 
-		if($type == 'file') {
+	/**
+	 * 工厂
+	 * @param  string $key
+	 * @return object
+	 */
+	public static function factory($key) {
+
+		$logConfig = Kohana::$config->load('logger.'. $key);
+
+		$type = ucfirst(strtolower($logConfig['type']));
+		self::$_parameters = $logConfig['parameters'];
+		self::$_key = $key;
+
+		$className = "Logger_" . $type;
+		if(class_exists($className)) {
+			return new $className();
+		}else {
 			return new Logger_File();
 		}
-		if($type == 'database') {
-			return new Logger_Database();
-		}
-		if($type == 'memcache') {
-			return new Logger_Memcache();
-		}
-		if($type == 'redis') {
-			return new Logger_Redis();
-		}
-		if($type == 'mongodb') {
-			return new Logger_Mongodb();
-		}
-
-		return new Logger_File();
 	}
 
-	abstract public function write();
+	abstract public function write($data);
 
 	abstract public function execute();
 }

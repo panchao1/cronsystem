@@ -5,10 +5,13 @@
     </div>
     <div id="header_menu">
         <ul class="nav navbar-nav navbar-left" id="">
-            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(1);"><span class="glyphicon glyphicon-cog"></span> <span class="text">设置</span></a></li>
+            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(1);"><span class="glyphicon glyphicon-cog"></span> <span class="text">我的</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-left" id="">
-            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(2);"><span class="glyphicon glyphicon-cog"></span> <span class="text">系统</span></a></li>
+            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(2);"><span class="glyphicon glyphicon-cog"></span> <span class="text">设置</span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left" id="">
+            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(3);"><span class="glyphicon glyphicon-cog"></span> <span class="text">系统</span></a></li>
         </ul>
     </div>
     <div id="ad_setting" class="ad_setting">
@@ -32,6 +35,12 @@
             <a href=""><i class="glyph-icon icon-home"></i>首页</a>
         </li>
         <li data-navigator="1" class="childUlLi" style="display:none">
+            <a href="javascript:void(0)"> <i class="glyph-icon icon-reorder"></i>个人中心</a>
+            <ul>
+                <li><a href="/personal/info" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>个人信息</a></li>
+            </ul>
+        </li>
+        <li data-navigator="2" class="childUlLi" style="display:none">
             <a href="javascript:void(0)"> <i class="glyph-icon icon-reorder"></i>账号管理</a>
             <ul>
                 <li><a href="/account/add" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>添加账号</a></li>
@@ -39,20 +48,41 @@
             </ul>
         </li>
         <li data-navigator="2" class="childUlLi" style="display:none">
+            <a href="javascript:void(0)"> <i class="glyph-icon icon-reorder"></i>角色管理</a>
+            <ul>
+                <li><a href="/role/add" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>添加角色</a></li>
+                <li><a href="/role/list" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>角色列表</a></li>
+            </ul>
+        </li>
+        <li data-navigator="2" class="childUlLi" style="display:none">
+            <a href="javascript:void(0)"> <i class="glyph-icon icon-reorder"></i>权限管理</a>
+            <ul>
+                <li><a href="/privilege/add" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>添加权限</a></li>
+                <li><a href="/privilege/list" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>权限列表</a></li>
+            </ul>
+        </li>
+        <li data-navigator="2" class="childUlLi" style="display:none">
+            <a href="javascript:void(0)"> <i class="glyph-icon icon-reorder"></i>模块管理</a>
+            <ul>
+                <li><a href="/module/add" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>添加模块</a></li>
+                <li><a href="/module/list" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>模块列表</a></li>
+            </ul>
+        </li>
+        <li data-navigator="3" class="childUlLi" style="display:none">
             <a href="javascript:void(0)"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>项目管理</a>
             <ul>
                 <li><a href="/project/add" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>添加项目</a></li>
                 <li><a href="/project/list" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>项目列表</a></li>
             </ul>
         </li>
-        <li data-navigator="2" class="childUlLi" style="display:none">
+        <li data-navigator="3" class="childUlLi" style="display:none">
             <a href="javascript:void(0)"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>任务管理</a>
             <ul>
                 <li><a href="/task/add" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>添加任务</a></li>
                 <li><a href="/task/list" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>任务列表</a></li>
             </ul>
         </li>
-        <li data-navigator="2" class="childUlLi" style="display:none">
+        <li data-navigator="3" class="childUlLi" style="display:none">
             <a href="javascript:void(0)"  target="menuFrame"> <i class="glyph-icon icon-reorder"></i>日志管理</a>
             <ul>
                 <li><a href="/log/run" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>运行日志</a></li>

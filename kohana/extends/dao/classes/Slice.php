@@ -4,13 +4,13 @@
  * @author PanChao
  * //数据库切分
  * Slice::database($format)
- * 		->name()
- * 		->key()
+ * 		->name($name)
+ * 		->key($key)
  * 		->execute()
  * //表切分
  * Slice::table($format)
- * 		->name()
- * 		->key()
+ * 		->name($name)
+ * 		->key($key)
  * 		->execute()
  */
 class Slice {
@@ -24,7 +24,6 @@ class Slice {
 		
 		return Slice_Mode::factory($format);
 	}
-
 
 	/**
 	 * 表切分

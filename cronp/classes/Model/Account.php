@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
  * 用户管理model
+ * @author PanChao
  */
 class Model_Account extends Model {
 
@@ -55,6 +56,26 @@ class Model_Account extends Model {
 	}
 
 	/**
+	 * 账号总数
+	 * @return integer
+	 */
+	public function countAccounts() {
+
+		return Dao::factory('Account')->countAccounts();
+	}
+
+	/**
+	 * 得到用户（分页）
+	 * @param  integer $offset 
+	 * @param  integer $number 
+	 * @return array
+	 */
+	public function getAccountsByLimit($offset = 0, $number = 0) {
+
+		return Dao::factory('Account')->getAccountsByLimit();
+	}
+
+	/**
 	 * 根据用户名查找用户
 	 * @param  string $username 
 	 * @return array
@@ -65,5 +86,19 @@ class Model_Account extends Model {
 			return array();
 		}
 		return Dao::factory('Account')->getAccountByName($username);
+	}
+
+	/**
+	 * 根据 accountId 来查找账号信息
+	 * @param  integer $accountId 
+	 * @return array
+	 */
+	public function getAccountByAccountId($accountId) {
+
+		if(!$accountId) {
+			return array();
+		}
+
+		return Dao::factory('Account')->getAccountByAccountId($accountId);
 	}
 }

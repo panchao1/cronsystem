@@ -3,24 +3,13 @@
  * 用户数据库访问
  * @author PanChao
  */
-class Dao_Account extends Dao {
+class Dao_Account extends Dao_Base {
 
 	protected $_table = 'account';
 
 	protected $_db = 'cron_task';
 
-	/**
-	 * 插入一条
-	 * @param  array  $values 
-	 * @return integer
-	 */
-	public function insert(array $values) {
-
-		return DB::insert($this->_table)
-			->columns(array_keys($values))
-			->values(array_values($values))
-			->execute($this->_db);
-	}
+	protected $_primaryKey = 'account_id';
 
 	/**
 	 * 得到账号信息
@@ -28,10 +17,7 @@ class Dao_Account extends Dao {
 	 */
 	public function getAccounts() {
 
-		return DB::select('*')
-			->from($this->_table)
-			->execute($this->_db)
-			->as_array();
+		return parent::getAllData();
 	}
 
 	/**
@@ -46,5 +32,35 @@ class Dao_Account extends Dao {
 			->where('name', '=', $name)
 			->execute($this->_db)
 			->as_array();
+	}
+
+	/**
+	 * 根据用户ID查找用户信息
+	 * @param  string $username 
+	 * @return array
+	 */
+	public function getAccountByAccountId($accountId) {
+
+		return parent::getDataByPrimaryKey($accountId);
+	}
+
+	/**
+	 * 账号总数
+	 * @return integer
+	 */
+	public function countAccounts() {
+
+		return parent::countAllData();
+	}
+
+	/**
+	 * 得到用户（分页）
+	 * @param  integer $offset 
+	 * @param  integer $number 
+	 * @return array
+	 */
+	public function getAccountsByLimit($offset = 0, $number = 0) {
+
+		return parent::getDataByLimit($offset, $number);
 	}
 }

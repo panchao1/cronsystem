@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /**
  * 项目 model
+ * @author PanChao
  */
 class Model_Project extends Model {
 
@@ -21,7 +22,6 @@ class Model_Project extends Model {
 		);
 		
 		$values = array_intersect_key($values, $fields);
-
 		$values = $values + $fields;
 
 		return Dao::factory('Project')->insert($values);

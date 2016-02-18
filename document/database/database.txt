@@ -1,0 +1,202 @@
+-- ----------------------------------------------------------
+-- 数据库文件
+-- @date 2016.01.11
+-- ----------------------------------------------------------
+
+
+-- **********************************************************
+--  crontab task system - CTS 
+-- **********************************************************
+
+-- ----------------------------------------------------------
+-- 会话信息表
+-- Panchao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_session`;
+CREATE TABLE `cts_session` (
+	`session_id` varchar(24) NOT NULL DEFAULT '' COMMENT 'Session id',
+	`last_active` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Last active time',
+	`contents` text NOT NULL COMMENT 'Session data',
+	PRIMARY KEY (`session_id`),
+	KEY (`last_active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会话信息表';
+
+-- ----------------------------------------------------------
+-- 用户信息表
+-- Panchao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_account`;
+CREATE TABLE `cts_account` (
+	`account_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+	`name` varchar(32) NOT NULL DEFAULT '' COMMENT '用户名',
+	`given_name` varchar(32) NOT NULL DEFAULT '' COMMENT '姓名',
+	`password` varchar(32) NOT NULL DEFAULT '' COMMENT '密码',
+	`email` varchar(100) NOT NULL DEFAULT '' COMMENT '邮箱',
+	`phone` char(20) NOT NULL DEFAULT '' COMMENT '电话',
+	`mobile` char(18) NOT NULL DEFAULT '' COMMENT '手机',
+	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 0 正常 -1 删除',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+	PRIMARY KEY (`account_id`),
+	KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+
+-- ----------------------------------------------------------
+-- 用户角色表
+-- Panchao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_role`;
+CREATE TABLE `cts_role` (
+	`role_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '角色id',
+	`name` char(10) NOT NULL DEFAULT '' COMMENT '角色名称',
+	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 0 正常 -1 删除',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+	PRIMARY KEY(`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色表';
+
+-- ----------------------------------------------------------
+-- 用户角色对应关系表
+-- Panchao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_account_role`;
+CREATE TABLE `cts_account_role` (
+	`account_role_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '角色id',
+	`role_id` int(10) NOT NULL DEFAULT '' COMMENT '角色id',
+	`account_id` bigint(20) NOT NULL DEFAULT '' COMMENT '角色名称',
+	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 0 正常 -1 删除',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+	PRIMARY KEY(`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色表';
+
+-- ----------------------------------------------------------
+-- 用户权限表
+-- PanChao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_privilege`;
+CREATE TABLE `cts_privilege` (
+	`privilege_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '权限id',
+	`name` char(30) NOT NULL DEFAULT '' COMMENT '权限名',
+	`parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上级',
+	`domain` char(100) NOT NULL DEFAULT '' COMMENT '域名',
+	`portal` char(50) NOT NULL DEFAULT '' COMMENT '默认文件',
+	`module` char(100) NOT NULL DEFAULT '' COMMENT '模块',
+	`controller` char(100) NOT NULL DEFAULT '' COMMENT '控制器',
+	`action` char(100) NOT NULL DEFAULT '' COMMENT '动作',
+	`target` char(255) NOT NULL DEFAULT '' COMMENT '目标地址',
+	`icon` char(100) NOT NULL DEFAULT '' COMMENT '图标（用于展示)',
+	`type` enum('controller', 'menu', 'navigator') DEFAULT 'controller' COMMENT '权限类型：控制器、菜单、导航',
+	`is_display` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否显示：0不显示 1显示',
+	`sequence` int(10) NOT NULL DEFAULT '0' COMMENT '排序(越小越靠前)',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+	PRIMARY KEY(`privilege_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限（动作）表';
+
+-- ----------------------------------------------------------
+-- 模块表
+-- PanChao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `vms_module`;
+CREATE TABLE `vms_module` (
+	`module_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '模块id',
+	`name` char(100) NOT NULL DEFAULT '' COMMENT '模块名',
+	`module` char(100) NOT NULL DEFAULT '' COMMENT '模块',
+	`portal` char(100) NOT NULL DEFAULT '' COMMENT '入口文件',
+	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 －1删除 0默认',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+	PRIMARY KEY(`module_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模块表';
+
+-- ----------------------------------------------------------
+-- 项目表
+-- PanChao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_project`;
+CREATE TABLE `cts_project` (
+	`project_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '项目id',
+	`name` varchar(32) NOT NULL DEFAULT '' COMMENT '项目名称',
+	`describe` varchar(255) NOT NULL DEFAULT '' COMMENT '项目描述',
+	`account_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '账号id',
+	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 0 正常 -1 删除',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+	PRIMARY KEY (`project_id`),
+	KEY (`name`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目表';
+
+-- ----------------------------------------------------------
+-- 定时任务表
+-- PanChao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_task`;
+CREATE TABLE `cts_task` (
+	`task_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
+	`name` varchar(255) NOT NULL DEFAULT '' COMMENT '任务名称',
+	`describe` varchar(255) NOT NULL DEFAULT '' COMMENT '任务描述',
+	`strategy` char(20) NOT NULL DEFAULT '' COMMENT '任务策略',
+	`type` tinyint(5) NOT NULL DEFAULT '0' COMMENT '任务类型 0 立即执行 1 一次执行',
+	`url` char(255) NOT NULL DEFAULT '' COMMENT '任务接口地址',
+	`account_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '任务负责人账号id',
+	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 -1 删除 0 暂停 1 正常',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+	PRIMARY KEY (`task_id`),
+	KEY (`account_id`)
+)ENGINE=InnoDB DEFAULT=utf8 COMMENT='项目表';
+
+-- ----------------------------------------------------------
+-- 项目任务关系表
+-- PanChao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_project_task`;
+CREATE TABLE `cts_project_task` (
+	`project_task_id` bigint(20) NOT NULL DEFAULT '0' AUTO_INCREMENT COMMENT '项目任务关系id',
+	`task_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '任务id',
+	`project_id` int(10) NOT NULL DEFAULT '0' COMMENT '项目id',
+	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 -1 删除 0 正常',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+	PRIMARY KEY (`project_task_id`),
+	KEY (`task_id`)
+)ENGINE=InnoDB DEFAULT=utf8 COMMENT='项目任务关系表';
+
+-- ----------------------------------------------------------
+-- 系统日志表
+-- PanChao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_log`;
+CREATE TABLE `cts_log` (
+	`log_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '日志id',
+	`controller` char(100) NOT NULL DEFAULT '' COMMENT '控制器',
+	`action` char(100) NOT NULL DEFAULT '' COMMENT '动作',
+	`get` text NOT NULL COMMENT 'get参数',
+	`post` text NOT NULL COMMENT 'post参数',
+	`message` varchar(255) NOT NULL DEFAULT '' COMMENT '信息',
+	`ip` char(100) NOT NULL DEFAULT '' COMMENT 'ip地址',
+	`user_agent` char(200) NOT NULL DEFAULT '' COMMENT '用户代理',
+	`referer` char(100) NOT NULL DEFAULT '' COMMENT 'referer',
+	`account_id` int(10) NOT NULL DEFAULT 0 COMMENT '帐号id',
+	`account_name` char(100) NOT NULL DEFAULT '' COMMENT '帐号名',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	PRIMARY KEY (`log_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='日志表';
+
+-- ----------------------------------------------------------
+-- 异常日志表
+-- PanChao 2016.01.11
+-- ----------------------------------------------------------
+DROP TABLE IF EXISTS `cts_crash_log`;
+CREATE TABLE `cts_crash_log` (
+	`log_crash_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '异常日志id',
+	`ip` varchar(20) NOT NULL DEFAULT '' COMMENT 'IP',
+	`hostname` varchar(100) NOT NULL DEFAULT '' COMMENT '服务器名',
+	`level` tinyint(1) NOT NULL DEFAULT 0 COMMENT '级别',
+	`file` varchar(256) NOT NULL DEFAULT '' COMMENT '文件',
+	`line` int(10) NOT NULL DEFAULT 0 COMMENT '行数',
+	`message` text NOT NULL COMMENT '信息',
+	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+	PRIMARY KEY (`log_crash_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='异常日志表';

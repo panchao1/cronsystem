@@ -20,10 +20,22 @@ class Controller_Task extends Controller_Template {
 	}
 
 	/**
-	 * 添加保存
+	 * 保存任务
 	 */
 	public function action_save() {
 
 		Prompt::jsonSuccess('任务添加成功', URL::site('task/add'));
+	}
+
+	/**
+	 * 任务列表
+	 */
+	public function action_list() {
+
+		$data = array (
+			'name' => 'dal',
+			'password' => '456789',
+		);
+		Logger::factory('error_log')->write($data)->execute();
 	}
 }

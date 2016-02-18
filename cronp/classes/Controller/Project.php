@@ -54,14 +54,10 @@ class Controller_Project extends Controller_Template {
 	 * 项目列表
 	 */
 	public function action_list() {
-
-		$pageSize = Arr::get($_GET, 'page_size', 10);
-		$pageIndex = Arr::get($_GET, 'page_index', 0);
-
+		
 		$total = Model::factory('Project')->countProjects()->getArray();
-
-		$pagination = Pagination::factory($pageSize, $pageIndex, $total);
-
+		$pagination = Pagination::factory($total);
+		
 		$projects = Model::factory('Project')->getProjectsBylimit($pagination->offset(), $pagination->number())->getObject();
 
 		$this->_default->content = View::factory('project/list')

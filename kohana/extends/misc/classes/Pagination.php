@@ -5,17 +5,36 @@
  */
 class Pagination {
 
-	//分页数据
+	/**
+	 * 分页数据
+	 * @var array
+	 */
 	protected $_pageData = array ();
-	//当前页
+	
+	/**
+	 * 当前页
+	 * @var integer
+	 */
 	protected $_pageIndex = 0;
-	//每页的条数
+	
+	/**
+	 * 每页条数
+	 * @var integer
+	 */
 	protected $_pageSize = 10;
-	//总共多少条
+	
+	/**
+	 * 总共条数
+	 * @var integer
+	 */
 	protected $_total = 0;
 
-	public static function factory($pageSize, $pageIndex, $total) {
 
+	public static function factory($total, $pageSize = 10, $pageIndex = 0) {
+
+		$pageSize = Arr::get($_GET, 'page_size', 10);
+		$pageIndex = Arr::get($_GET, 'page_index', 0);
+		
 		return new self($pageSize, $pageIndex, $total);
 	}
 

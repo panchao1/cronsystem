@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
-
+/**
+ * 数据库配置文件
+ */
 return array
 (
 	'default' => array
