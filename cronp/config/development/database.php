@@ -18,6 +18,7 @@ return array
 		'charset'      => 'utf8',
 		'caching'      => FALSE,
 	),
+
 	'cron_task' => array
 	(
 		'type'       => 'MySQL',
@@ -32,6 +33,22 @@ return array
 		'charset'      => 'utf8',
 		'caching'      => FALSE,
 	),
+
+	'test' => array
+	(
+		'type'       => 'MySQL',
+		'connection' => array(
+			'hostname'   => '127.0.0.1',
+			'database'   => 'test',
+			'username'   => 'root',
+			'password'   => '123456',
+			'persistent' => FALSE,
+		),
+		'table_prefix' => '',
+		'charset'      => 'utf8',
+		'caching'      => FALSE,
+	),
+	
 	// 'alternate' => array(
 	// 	'type'       => 'PDO',
 	// 	'connection' => array(

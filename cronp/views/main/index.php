@@ -5,10 +5,10 @@
     </div>
     <div id="header_menu">
         <ul class="nav navbar-nav navbar-left" id="">
-            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(1);"><span class="glyphicon glyphicon-cog"></span> <span class="text">我的</span></a></li>
+            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(1);"><span class="glyphicon glyphicon-wrench"></span> <span class="text">我的</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-left" id="">
-            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(2);"><span class="glyphicon glyphicon-cog"></span> <span class="text">设置</span></a></li>
+            <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(2);"><span class="glyphicon glyphicon-wrench"></span> <span class="text">设置</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-left" id="">
             <li data-navigator="13"><a href="javascript:void(0)" onclick="loadMenu(3);"><span class="glyphicon glyphicon-cog"></span> <span class="text">系统</span></a></li>

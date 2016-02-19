@@ -39,7 +39,7 @@ class Controller_Author extends Controller {
 
 		if($account[0]['password'] && $account[0]['password'] === md5($password)){
 			//保存 seesion 信息
-			$_SESSION['login'] = $account[0];
+			Session::instance()->set('author', $account[0]);
 			return Controller::redirect('/');
 		} else {
 			return Prompt::errorView('登录失败', 'author');

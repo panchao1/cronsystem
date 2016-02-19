@@ -136,8 +136,9 @@ Cookie::$salt = 'adsasdas';
 
 /**
  * session
+ * database | redis | memcache | mongodb | native
  */
-session_start();
+Session::$default = 'database';
 
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
@@ -156,6 +157,7 @@ Kohana::modules(array(
 	'model'		=>	EXTENDPATH.'model',
 	'dao'		=>	EXTENDPATH.'dao',
 	'logger'	=> 	EXTENDPATH.'logger',
+	'session'	=> 	EXTENDPATH.'session',
 	));
 
 /**

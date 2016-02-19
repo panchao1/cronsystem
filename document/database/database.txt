@@ -9,7 +9,7 @@
 -- **********************************************************
 
 -- ----------------------------------------------------------
--- 会话信息表
+-- session 信息表
 -- Panchao 2016.01.11
 -- ----------------------------------------------------------
 DROP TABLE IF EXISTS `cts_session`;
@@ -19,7 +19,7 @@ CREATE TABLE `cts_session` (
 	`contents` text NOT NULL COMMENT 'Session data',
 	PRIMARY KEY (`session_id`),
 	KEY (`last_active`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会话信息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='session信息表';
 
 -- ----------------------------------------------------------
 -- 用户信息表
