@@ -158,6 +158,7 @@ Kohana::modules(array(
 	'dao'		=>	EXTENDPATH.'dao',
 	'logger'	=> 	EXTENDPATH.'logger',
 	'session'	=> 	EXTENDPATH.'session',
+	'author'	=> 	EXTENDPATH.'author',
 	));
 
 /**

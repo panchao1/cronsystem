@@ -105,7 +105,7 @@ if ( ! defined('KOHANA_START_MEMORY'))
 }
 
 // Bootstrap the application
-require APPPATH.'bootstrap'.EXT;
+require APPPATH.'/bootstrap'.EXT;
 
 if (PHP_SAPI == 'cli') // Try and load minion
 {

@@ -23,11 +23,12 @@ class Controller_Template extends Controller {
 		$host = "http://" . $_SERVER['HTTP_HOST'];
 		$loginUrl = $host . "/author";
 		$errorUrl = $host . "/error";
-		//验证权限
-		// if(0 == 1 ) {
-		// 	return Controller::redirect($loginUrl);
-		// }
-
+		//登录验证
+		$isLogin = Author::instance()->isLogin();
+		
+		if(!$isLogin) {
+			Controller::redirect($loginUrl);
+		}
 		parent::before();
 
 		if ($this->_autoRender === TRUE)

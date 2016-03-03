@@ -29,7 +29,7 @@ class Dao_Base extends Dao {
 		if(!$values) {
 			return FALSE;
 		}
-
+		
 		return DB::insert($this->_table)
 			->columns(array_keys($values))
 			->values(array_values($values))

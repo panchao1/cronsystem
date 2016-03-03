@@ -4,7 +4,6 @@
  */
 return array(
 
-	
 	/**
 	 * 运行日志（文件）
 	 */
@@ -14,9 +13,9 @@ return array(
 		'parameters' => array (
 			'name' => 'run_log',
 			'ext' => 'log',
-			'path' => APPPATH . '/logs',
-			'slice' => 'day',
-		),
+			'path' => APPPATH.'/logs',
+			'slice' => '',
+		)
 
 	),
 	
@@ -26,13 +25,23 @@ return array(
 	'error_log' => array(
 		'type' => 'database',
 		'parameters' => array (
-			'type'       => 'MYSQL',
-			'hostname'   => 'localhost',
-			'database'   => 'topic',
-			'username'   => 'root',
-			'password'   => '123456',
-			'charset'    => 'utf8',
-			'table'      => 'error_log',
+			'group' 	 => 'test', 
+			'table'      => 'test',
+			'slice'		 => '',
+		),
+		'columns' => array(
+			'portal',
+			'controller',
+			'action',
+			'get',
+			'post',
+			'message',
+			'ip',
+			'user_agent',
+			'referer',
+			'account_id',
+			'account_name',
+			'create_time',
 		),
 	),
 

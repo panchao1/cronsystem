@@ -78,15 +78,11 @@ DROP TABLE IF EXISTS `cts_privilege`;
 CREATE TABLE `cts_privilege` (
 	`privilege_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '权限id',
 	`name` char(30) NOT NULL DEFAULT '' COMMENT '权限名',
+	`type` enum('controller', 'menu', 'navigator') DEFAULT 'controller' COMMENT '权限类型：控制器、菜单、导航',
 	`parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上级',
-	`domain` char(100) NOT NULL DEFAULT '' COMMENT '域名',
-	`portal` char(50) NOT NULL DEFAULT '' COMMENT '默认文件',
-	`module` char(100) NOT NULL DEFAULT '' COMMENT '模块',
 	`controller` char(100) NOT NULL DEFAULT '' COMMENT '控制器',
 	`action` char(100) NOT NULL DEFAULT '' COMMENT '动作',
-	`target` char(255) NOT NULL DEFAULT '' COMMENT '目标地址',
 	`icon` char(100) NOT NULL DEFAULT '' COMMENT '图标（用于展示)',
-	`type` enum('controller', 'menu', 'navigator') DEFAULT 'controller' COMMENT '权限类型：控制器、菜单、导航',
 	`is_display` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否显示：0不显示 1显示',
 	`sequence` int(10) NOT NULL DEFAULT '0' COMMENT '排序(越小越靠前)',
 	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
@@ -98,12 +94,12 @@ CREATE TABLE `cts_privilege` (
 -- 模块表
 -- PanChao 2016.01.11
 -- ----------------------------------------------------------
-DROP TABLE IF EXISTS `vms_module`;
-CREATE TABLE `vms_module` (
+DROP TABLE IF EXISTS `cts_module`;
+CREATE TABLE `cts_module` (
 	`module_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '模块id',
 	`name` char(100) NOT NULL DEFAULT '' COMMENT '模块名',
 	`module` char(100) NOT NULL DEFAULT '' COMMENT '模块',
-	`portal` char(100) NOT NULL DEFAULT '' COMMENT '入口文件',
+	`icon` char(100) NOT NULL DEFAULT '' COMMENT '图标（用于展示)',
 	`status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态 －1删除 0默认',
 	`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
 	`update_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',

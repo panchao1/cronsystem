@@ -13,6 +13,14 @@ class Controller_Main extends Controller_Template {
 	 */
 	public function action_index() {
 
-		$this->_default->content = View::factory('main/index');
+		$privileges = Model::factory('Privilege')->getPrivilegesIsDisplay()->getArray();
+		$navigators = Model::factory('Privilege')->getNavigators($privileges)->getObject();
+		$menus = Model::factory('Privilege')->getMenus($privileges)->getObject();
+		$controllers = Model::factory('Privilege')->getControllers($privileges)->getObject();
+
+		$this->_default->content = View::factory('main/index')
+			->set('navigators', $navigators)
+			->set('menus', $menus)
+			->set('controllers', $controllers);
 	}
 }

@@ -12,8 +12,8 @@ class Controller_Personal extends Controller_Template {
 	 */
 	public function action_info() {
 
-		$accountId = $_SESSION['login']['account_id'];
-		$account = Model::factory('Account')->getAccountByAccountId($accountId)->getObject()->current();
+		$account = Session::instance()->get('author');
+		$account = Model::factory('Account')->getAccountByAccountId($account['account_id'])->getObject()->current();
 
 		$this->_default->content = View::factory('personal/list')
 					->set('account', $account);
