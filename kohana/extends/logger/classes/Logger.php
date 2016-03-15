@@ -25,6 +25,12 @@ abstract class Logger {
 	protected static $_parameters = array();
 
 	/**
+	 * 字段
+	 * @var array
+	 */
+	protected static $_columns = array ();
+
+	/**
 	 * 工厂
 	 * @param  string $key
 	 * @return object
@@ -35,6 +41,7 @@ abstract class Logger {
 
 		$type = ucfirst(strtolower($logConfig['type']));
 		self::$_parameters = $logConfig['parameters'];
+		self::$_columns = $logConfig['columns'];
 		self::$_key = $key;
 
 		$className = "Logger_" . $type;

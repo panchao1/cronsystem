@@ -177,7 +177,7 @@ class Curl {
 		$errno = curl_errno($this->_ch);
 		
 		if($errno > 0) {
-			throw new Kohana_Exception (curl_error($this->_ch), $errno);
+			throw new Kohana_Exception (curl_error($this->_ch));
 		}
 
 		$header_size = curl_getinfo ($this->_ch, CURLINFO_HEADER_SIZE);

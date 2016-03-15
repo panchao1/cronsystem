@@ -18,4 +18,15 @@ class Controller_Personal extends Controller_Template {
 		$this->_default->content = View::factory('personal/list')
 					->set('account', $account);
 	}
+
+	/**
+	 * 修改
+	 */
+	public function action_edit() {
+		
+	}
+
+	public function action_modify() {
+		
+	}
 }

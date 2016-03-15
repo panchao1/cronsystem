@@ -4,6 +4,9 @@
  */
 var Common = {
 
+	/**
+	 * 分页
+	 */
 	paginator: function(element, pagedata) {
 	
 		var url = window.location.pathname;
@@ -33,5 +36,29 @@ var Common = {
 			var trueUrl = host + url + "?page_index=" + index +"&page_size=" + pagedata[0].pageSize;
 			window.location.href = trueUrl;
 		}
-	}
+	},
+
+	/**
+	 * 提示
+	 */
+	confirm: function(text, url) {
+
+		swal({
+			title: "警告", 
+			text: text,
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",   
+			confirmButtonText: "YES",
+			cancelButtonText: "NO", 
+			closeOnConfirm: false,
+		},
+		function(isConfirm) {
+			if (isConfirm) {
+				swal("Deleted!", "Your imaginary file has been deleted.", "success");
+			} else {
+				swal("Cancelled", "Your imaginary file is safe :)", "error");
+			}
+		});
+	},
 }

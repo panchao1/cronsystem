@@ -114,32 +114,18 @@ class Controller_Privilege extends Controller_Template {
 	 */
 	public function action_list() {
 
-		$url = "http://i.s.lis.video.sina.com.cn:8081/program/getRtmpUrl";
-		$data = array (
-			'start_time'=> time()+3600,
-			'end_time' => time()+7200,
-			'ip' => '123.126.53.54',
-			'session_id' => 'sdasdasdeals',
-			'appname' => 'finance',
-			'callback_url' => 'http://lis.sports.sina.com.cn'
-		);
-		$response = Curl::instance()
-			->timeout(30)
-			->url($url)
-			->post($data);
-		echo $response->getCode(). "<br/>";
-		echo $response->getMessage() . "<br/>";
-		exit();
+		$privileges = Model::factory('Privilege')->getPrivileges()->getArray();
+		// $privileges = Model::factory('Privilege')->recurse($privileges)->getObject();
 		//$privileges = Model::factory('Privilege')->getPrivileges()->getObject();
-		// $navigators = Model::factory('Privilege')->getNavigators($privileges)->getObject();
-		// $menus = Model::factory('Privilege')->getMenus($privileges)->getObject();
-		// $controllers = Model::factory('Privilege')->getControllers($privileges)->getObject();
 
-		//$this->_default->content = View::factory('privilege/list')
-			//->set('privileges', $privileges);
-			// ->set('navigators', $navigators)
-			// ->set('menus', $menus)
-			// ->set('controllers', $controllers);
+		$navigators = Model::factory('Privilege')->getNavigators($privileges)->getObject();
+		$menus = Model::factory('Privilege')->getMenus($privileges)->getObject();
+		$controllers = Model::factory('Privilege')->getControllers($privileges)->getObject();
+
+		$this->_default->content = View::factory('privilege/list')
+			->set('navigators', $navigators)
+			->set('menus', $menus)
+			->set('controllers', $controllers);
 	}
 
 	public function action_modify() {

@@ -20,7 +20,7 @@ return array(
 	),
 	
 	/**
-	 * 错误日志（数据库）
+	 * 行为日志（数据库）
 	 */
 	'error_log' => array(
 		'type' => 'database',
@@ -30,18 +30,15 @@ return array(
 			'slice'		 => '',
 		),
 		'columns' => array(
-			'portal',
-			'controller',
-			'action',
-			'get',
-			'post',
-			'message',
-			'ip',
-			'user_agent',
-			'referer',
-			'account_id',
-			'account_name',
-			'create_time',
+			'controller' => strtolower(Request::current()->controller()),
+			'action' => strtolower(Request::current()->action()),
+			'get' => json_encode($_GET),
+			'post' => json_encode($_POST),
+			'message' => '',
+			'ip' => Request::$client_ip,
+			'referer' => Request::current()->referrer(),
+			'user_agent' => Request::$user_agent,
+			'create_time' => time(),
 		),
 	),
 

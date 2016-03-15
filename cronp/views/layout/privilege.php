@@ -9,7 +9,8 @@
 	<link href="/resource/css/common.css" rel="stylesheet" type="text/css">
 	<link href="/resource/css/sweetalert.css" rel="stylesheet" type="text/css" >
 	<link href="/resource/css/mricode.pagination.css" rel="stylesheet" type="text/css" >
-	<link rel="stylesheet" href="/resource/css/icon-picker.css" />
+	<link href="/resource/css/icon-picker.css" rel="stylesheet" />
+	<link href="/resource/css/bootstrap-treeview.css" rel="stylesheet" />
 	
 	<script type="text/javascript" src="/resource/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/resource/js/jquery/tendina.min.js"></script>
@@ -20,7 +21,7 @@
 	<script type="text/javascript" src="/resource/js/vendor/sweetalert-dev.js"></script>
 	<script type="text/javascript" src="/resource/js/bootstrap/mricode.pagination.js"></script>
 	<script type="text/javascript" src="/resource/js/bootstrap/bootstrap-iconpicker.js"></script>
-	<script type="text/javascript" src="/resource/js/common/tree.js"></script>
+	<script type="text/javascript" src="/resource/js/bootstrap/bootstrap-treeview.js"></script>
 </head>
 <body>
     <?php echo isset($content) ? $content : '';?>

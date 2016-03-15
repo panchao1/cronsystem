@@ -1,16 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-3 col-md-offset-9">
-        <!-- <form action="" method="get">
-          <div class="input-group">
-            <input class="form-control" name="keyword" type="text" value="" placeholder="用户名"/>
-            <span class="input-group-btn">
-              <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
-            </span>
-          </div>
-        </form> -->
-      </div>
     </div>
   </div>
   <div class="table-responsive">
@@ -46,8 +36,6 @@
   </div>
   <div class="panel-footer">
     <div class="row">
-      <div class="col-md-12 center">
-      </div>
     </div>
   </div>
 </div>

@@ -4,47 +4,12 @@
  */
 class Logger_Database extends Logger {
 
-	/**
-	 * 数据库连接方式
-	 * @var string
-	 */
-	protected $_type = 'MYSQL';
-	
-	/**
-	 * 域名
-	 * @var string
-	 */
-	protected $_hostname = 'localhost';
 
 	/**
-	 * 端口
-	 * @var integer
-	 */
-	protected $_port = 3306;
-
-	/**
-	 * 用户名
+	 * 数据库连接 group
 	 * @var string
 	 */
-	protected $_username = 'root';
-
-	/**
-	 * 密码
-	 * @var string
-	 */
-	protected $_password = '';
-
-	/**
-	 * 数据库
-	 * @var string
-	 */
-	protected $_database = '';
-
-	/**
-	 * 编码
-	 * @var string
-	 */
-	protected $_charset = 'utf8';
+	protected $_group = '';
 
 	/**
 	 * 表
@@ -63,13 +28,7 @@ class Logger_Database extends Logger {
 	 */
 	public function __construct() {
 
-		$this->_type = self::$_parameters['type'];
-		$this->_hostname = self::$_parameters['hostname'];
-		$this->_port = self::$_parameters['port'];
-		$this->_username = self::$_parameters['username'];
-		$this->_password = self::$_parameters['password'];
-		$this->_database = self::$_parameters['database'];
-		$this->_charset = self::$_parameters['charset'];
+		$this->_group = self::$_parameters['group'];
 		$this->_table = self::$_parameters['table'];
 		$this->_slice = isset(self::$_parameters['slice']) ? self::$_parameters['slice'] : '';
 
@@ -82,11 +41,15 @@ class Logger_Database extends Logger {
 	 */
 	public function write($data) {
 
+		if(self::$_columns) {
+			$data = array_intersect_key($data, self::$_columns);
+			$data = $data + self::$_columns;
+		}
 		if(is_string($data)) {
 			$data = array ($data);
 		}
 		if(!is_array($data)) {
-			throw new Logger_Database_Exception("write data error must is array");
+			throw new Logger_Database_Exception("write data error must is an array");
 		}
 		$this->_data = $data;
 
@@ -100,7 +63,7 @@ class Logger_Database extends Logger {
 	 */
 	protected function _tableName($key) {
 
-		return Slice::table($this->_slice)->name($this->_table)->key($key)->execute();
+		//return Slice::table($this->_slice)->name($this->_table)->key($key)->execute();
 	}
 
 	/**

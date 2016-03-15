@@ -9,6 +9,21 @@
   table-layout:fixed;
 }
 
+a{
+	color:#666;
+	cursor: pointer;
+}
+a:hover{cursor:pointer;}
+a:hover, a:focus {
+	text-decoration: none;
+}
+
+.inline-group {display: inline-table;}
+
+ul,li {
+	font-size: 13px;
+}
+
 th{
 	background-color: #F5F5F5;
 }
